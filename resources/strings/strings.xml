@@ -1,0 +1,14 @@
+<strings>
+    <string id="AppName">Piquet Calculator</string>
+    <string id="prompt">Click the menu button</string>
+    <string id="startTime">22:00</string>
+    <string id="endTime">05:00</string>
+    <string id="numberOfPers">8</string>
+    <string id="staggering">Double Staggered</string>
+
+    <!-- Time Picker -->
+    <string id="timePickerTitle">Select Time</string>
+    <string id="timeSeparator">:</string>
+    <string id="morning">AM</string>
+    <string id="afternoon">PM</string>
+</strings>

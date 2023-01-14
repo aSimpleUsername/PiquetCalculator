@@ -1,0 +1,7 @@
+<layout id="MainLayout">
+    <label x="center" y="top" text="@Strings.AppName" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_SMALL"/>
+    <label id="startTime" text="@Strings.startTime" x="center" y="center" font="Graphics.FONT_LARGE" justification="Graphics.TEXT_JUSTIFY_CENTER" color="Graphics.COLOR_BLUE" />
+    <label id="endTime" text="@Strings.endTime" />
+    <label id="numberOfPers" text="@Strings.numberOfPers" />
+    <label id="staggering" text="@Strings.staggering" />
+</layout>

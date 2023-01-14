@@ -1,0 +1,171 @@
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 2; ]
+import Toybox.Graphics;
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 3; ]
+import Toybox.Lang;
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 4; ]
+import Toybox.WatchUi;
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 7; ]
+class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate{
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 7; ]
+    <init> {
+    }
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 7; ]
+    static
+    <init> {
+    }
+    //! Constructor
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 11; ]
+    public
+    function initialize() as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_12_4_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 13 8 ]
+        %tmp.2 = getv ? :Menu2InputDelegate;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_12_4_stop:
+    }
+    //! Handle an item being selected
+    //! @param item The selected menu item
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 18; ]
+    public
+    function onSelect(item as MenuItem) as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_19_4_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 20 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_19_4_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_19_4_stop" ]
+        %id.1 = local;
+        %tmp.1 = lgetv %item;
+        %tmp.2 = getv function %tmp.1 :getId;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        %tmp.4 = as %tmp.3 String;
+        lputv %id.1 %tmp.4;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 22 8 ]
+        %tmp.6 = lgetv %id.1;
+        push %tmp.6;
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_22_8_switchCaseBegin:
+        %tmp.7 = dup %tmp.6;
+        %tmp.8 = "startTime";
+        %tmp.9 = getv function %tmp.7 :equals;
+        %tmp.10 = invoke %tmp.7 %tmp.9 (%tmp.8);
+        bt %tmp.10 @C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_24_12;
+        %tmp.11 = dup %tmp.6;
+        %tmp.12 = "endTime";
+        %tmp.13 = getv function %tmp.11 :equals;
+        %tmp.14 = invoke %tmp.11 %tmp.13 (%tmp.12);
+        bt %tmp.14 @C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_27_12;
+        goto @C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_22_8_defaultCodeBegin;
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_24_12:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 25 16 ]
+        %tmp.15 = getm $.Toybox.WatchUi;
+        %tmp.16 = getv function %tmp.15 :pushView;
+        %tmp.20 = getm $;
+        %tmp.21 = getv %tmp.20 :TimePicker;
+        %tmp.23 = lgetv %id.1;
+        %tmp.17 = newc %tmp.21 (%tmp.23);
+        %tmp.27 = getm $;
+        %tmp.28 = getv %tmp.27 :TimePickerDelegate;
+        %tmp.30 = lgetv %item;
+        %tmp.24 = newc %tmp.28 (%tmp.30);
+        %tmp.31 = getm $.Toybox.WatchUi;
+        %tmp.32 = getv %tmp.31 :SLIDE_IMMEDIATE;
+        invoke %tmp.15 %tmp.16(%tmp.17, %tmp.24, %tmp.32);
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 26 16 ]
+        goto @C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_22_8_switchCaseEnd;
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_27_12:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 28 16 ]
+        %tmp.33 = getm $.Toybox.WatchUi;
+        %tmp.34 = getv function %tmp.33 :pushView;
+        %tmp.38 = getm $;
+        %tmp.39 = getv %tmp.38 :TimePicker;
+        %tmp.41 = lgetv %id.1;
+        %tmp.35 = newc %tmp.39 (%tmp.41);
+        %tmp.45 = getm $;
+        %tmp.46 = getv %tmp.45 :TimePickerDelegate;
+        %tmp.48 = lgetv %item;
+        %tmp.42 = newc %tmp.46 (%tmp.48);
+        %tmp.49 = getm $.Toybox.WatchUi;
+        %tmp.50 = getv %tmp.49 :SLIDE_IMMEDIATE;
+        invoke %tmp.33 %tmp.34(%tmp.35, %tmp.42, %tmp.50);
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 29 16 ]
+        goto @C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_22_8_switchCaseEnd;
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_30_12:
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_22_8_defaultCodeBegin:
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_22_8_switchCaseEnd:
+        pop;
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_19_4_stop:
+    }
+    //! Handle the back key being pressed
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 53; ]
+    public
+    function onBack() as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_53_37_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 54 8 ]
+        %tmp.1 = getm $.Toybox.WatchUi;
+        %tmp.2 = getv function %tmp.1 :popView;
+        %tmp.3 = getm $.Toybox.WatchUi;
+        %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
+        invoke %tmp.1 %tmp.2(%tmp.4);
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_53_37_stop:
+    }
+}
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 59; ]
+class Menu2SampleSubMenuDelegate extends WatchUi.Menu2InputDelegate{
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 59; ]
+    <init> {
+    }
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 59; ]
+    static
+    <init> {
+    }
+    //! Constructor
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 62; ]
+    public
+    function initialize() as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_62_33_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 63 8 ]
+        %tmp.2 = getv ? :Menu2InputDelegate;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_62_33_stop:
+    }
+    //! Handle an item being selected
+    //! @param item The selected menu item
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 68; ]
+    public
+    function onSelect(item as MenuItem) as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_68_55_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 72 8 ]
+        %tmp.1 = getm $.Toybox.WatchUi;
+        %tmp.2 = getv function %tmp.1 :requestUpdate;
+        invoke %tmp.1 %tmp.2();
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_68_55_stop:
+    }
+    //! Handle the back key being pressed
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 76; ]
+    public
+    function onBack() as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_76_37_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 77 8 ]
+        %tmp.1 = getm $.Toybox.WatchUi;
+        %tmp.2 = getv function %tmp.1 :popView;
+        %tmp.3 = getm $.Toybox.WatchUi;
+        %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
+        invoke %tmp.1 %tmp.2(%tmp.4);
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_76_37_stop:
+    }
+    //! Handle the done item being selected
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 81; ]
+    public
+    function onDone() as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_81_37_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc" 82 8 ]
+        %tmp.1 = getm $.Toybox.WatchUi;
+        %tmp.2 = getv function %tmp.1 :popView;
+        %tmp.3 = getm $.Toybox.WatchUi;
+        %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
+        invoke %tmp.1 %tmp.2(%tmp.4);
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetOptionsDelegate_mc_81_37_stop:
+    }
+}
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetOptionsDelegate.mc"; @line = 2; ]
+<init> {
+}

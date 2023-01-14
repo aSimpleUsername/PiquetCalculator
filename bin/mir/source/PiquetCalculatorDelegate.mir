@@ -1,0 +1,275 @@
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 7; ]
+import Toybox.Graphics;
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 8; ]
+import Toybox.Lang;
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 9; ]
+import Toybox.WatchUi;
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 10; ]
+import Toybox.Application.Storage;
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 14; ]
+class PiquetCalculatorDelegate extends WatchUi.BehaviorDelegate{
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 14; ]
+    <init> {
+    }
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 14; ]
+    static
+    <init> {
+    }
+    //! Constructor
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 17; ]
+    public
+    function initialize() as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_17_33_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 18 8 ]
+        %tmp.2 = getv ? :BehaviorDelegate;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_17_33_stop:
+    }
+    //! Handle the menu event
+    //! @return true if handled, false otherwise
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 23; ]
+    public
+    function LoadMenu() {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_23_31_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 25 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_23_31_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_23_31_stop" ]
+        %menu.1 = local;
+        %tmp.3 = getm $.Toybox.WatchUi;
+        %tmp.4 = getv function ? %tmp.3 :Menu2;
+        %tmp.5 = newd 1;
+        %tmp.7 = const :title;
+        %tmp.11 = getm $;
+        %tmp.12 = getv %tmp.11 :DrawableMenuTitle;
+        %tmp.8 = newc %tmp.12 ();
+        %tmp.13 = dup %tmp.5;
+        %tmp.14 = aputv %tmp.13 %tmp.7 %tmp.8;
+        %tmp.1 = newc %tmp.4 (%tmp.14);
+        lputv %menu.1 %tmp.1;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 28 8 ]
+        %tmp.15 = lgetv %menu.1;
+        %tmp.16 = getv function %tmp.15 :addItem;
+        %tmp.19 = getm $.Toybox.WatchUi;
+        %tmp.20 = getv function ? %tmp.19 :MenuItem;
+        %tmp.21 = "Start Time";
+        %tmp.22 = getm $.Toybox.Application.Storage;
+        %tmp.23 = getv function %tmp.22 :getValue;
+        %tmp.24 = "startTime";
+        %tmp.25 = invoke %tmp.22 %tmp.23(%tmp.24);
+        %tmp.26 = "startTime";
+        %tmp.27 = null;
+        %tmp.17 = newc %tmp.20 (%tmp.21, %tmp.25, %tmp.26, %tmp.27);
+        invoke %tmp.15 %tmp.16(%tmp.17);
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 29 8 ]
+        %tmp.28 = lgetv %menu.1;
+        %tmp.29 = getv function %tmp.28 :addItem;
+        %tmp.32 = getm $.Toybox.WatchUi;
+        %tmp.33 = getv function ? %tmp.32 :MenuItem;
+        %tmp.34 = "End Time";
+        %tmp.35 = getm $;
+        %tmp.36 = getv %tmp.35 :Rez;
+        %tmp.37 = getv %tmp.36 :Strings;
+        %tmp.38 = getv %tmp.37 :endTime;
+        %tmp.39 = "endTime";
+        %tmp.40 = null;
+        %tmp.30 = newc %tmp.33 (%tmp.34, %tmp.38, %tmp.39, %tmp.40);
+        invoke %tmp.28 %tmp.29(%tmp.30);
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 30 8 ]
+        %tmp.41 = lgetv %menu.1;
+        %tmp.42 = getv function %tmp.41 :addItem;
+        %tmp.45 = getm $.Toybox.WatchUi;
+        %tmp.46 = getv function ? %tmp.45 :MenuItem;
+        %tmp.47 = "Number of Pers";
+        %tmp.48 = getm $;
+        %tmp.49 = getv %tmp.48 :Rez;
+        %tmp.50 = getv %tmp.49 :Strings;
+        %tmp.51 = getv %tmp.50 :numberOfPers;
+        %tmp.52 = "numberOfPers";
+        %tmp.53 = null;
+        %tmp.43 = newc %tmp.46 (%tmp.47, %tmp.51, %tmp.52, %tmp.53);
+        invoke %tmp.41 %tmp.42(%tmp.43);
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 31 8 ]
+        %tmp.54 = lgetv %menu.1;
+        %tmp.55 = getv function %tmp.54 :addItem;
+        %tmp.58 = getm $.Toybox.WatchUi;
+        %tmp.59 = getv function ? %tmp.58 :MenuItem;
+        %tmp.60 = "Staggering";
+        %tmp.61 = getm $;
+        %tmp.62 = getv %tmp.61 :Rez;
+        %tmp.63 = getv %tmp.62 :Strings;
+        %tmp.64 = getv %tmp.63 :staggering;
+        %tmp.65 = "staggering";
+        %tmp.66 = null;
+        %tmp.56 = newc %tmp.59 (%tmp.60, %tmp.64, %tmp.65, %tmp.66);
+        invoke %tmp.54 %tmp.55(%tmp.56);
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 32 8 ]
+        %tmp.67 = lgetv %menu.1;
+        %tmp.68 = getv function %tmp.67 :addItem;
+        %tmp.71 = getm $.Toybox.WatchUi;
+        %tmp.72 = getv function ? %tmp.71 :MenuItem;
+        %tmp.73 = "Calculate";
+        %tmp.74 = null;
+        %tmp.75 = "calculate";
+        %tmp.76 = null;
+        %tmp.69 = newc %tmp.72 (%tmp.73, %tmp.74, %tmp.75, %tmp.76);
+        invoke %tmp.67 %tmp.68(%tmp.69);
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 33 8 ]
+        %tmp.77 = getm $.Toybox.WatchUi;
+        %tmp.78 = getv function %tmp.77 :pushView;
+        %tmp.80 = lgetv %menu.1;
+        %tmp.84 = getm $;
+        %tmp.85 = getv %tmp.84 :PiquetOptionsDelegate;
+        %tmp.81 = newc %tmp.85 ();
+        %tmp.86 = getm $.Toybox.WatchUi;
+        %tmp.87 = getv %tmp.86 :SLIDE_UP;
+        invoke %tmp.77 %tmp.78(%tmp.80, %tmp.81, %tmp.87);
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_23_31_stop:
+    }
+}
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 38; ]
+class DrawableMenuTitle extends WatchUi.Drawable{
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 38; ]
+    <init> {
+    }
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 38; ]
+    static
+    <init> {
+    }
+    //! Constructor
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 41; ]
+    public
+    function initialize() as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_41_33_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 42 8 ]
+        %tmp.2 = getv ? :Drawable;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        %tmp.4 = newd 0;
+        invoke %tmp.2 %tmp.3(%tmp.4);
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_41_33_stop:
+    }
+    //! Draw the application icon and main menu title
+    //! @param dc Device Context
+    [ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 47; ]
+    public
+    function draw(dc as Dc) as Void {
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_start:
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 48 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_stop" ]
+        %spacing.1 = local;
+        %tmp.1 = 2;
+        lputv %spacing.1 %tmp.1;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 49 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_stop" ]
+        %appIcon.2 = local;
+        %tmp.2 = getm $.Toybox.WatchUi;
+        %tmp.3 = getv function %tmp.2 :loadResource;
+        %tmp.4 = getm $;
+        %tmp.5 = getv %tmp.4 :Rez;
+        %tmp.6 = getv %tmp.5 :Drawables;
+        %tmp.7 = getv %tmp.6 :LauncherIcon;
+        %tmp.8 = invoke %tmp.2 %tmp.3(%tmp.7);
+        %tmp.9 = as %tmp.8 BitmapResource;
+        lputv %appIcon.2 %tmp.9;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 50 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_stop" ]
+        %bitmapWidth.3 = local;
+        %tmp.10 = lgetv %appIcon.2;
+        %tmp.11 = getv function %tmp.10 :getWidth;
+        %tmp.12 = invoke %tmp.10 %tmp.11();
+        lputv %bitmapWidth.3 %tmp.12;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 51 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_stop" ]
+        %labelWidth.4 = local;
+        %tmp.13 = lgetv %dc;
+        %tmp.14 = getv function %tmp.13 :getTextWidthInPixels;
+        %tmp.15 = "Piquet";
+        %tmp.16 = getm $.Toybox.Graphics;
+        %tmp.17 = getv %tmp.16 :FONT_MEDIUM;
+        %tmp.18 = invoke %tmp.13 %tmp.14(%tmp.15, %tmp.17);
+        lputv %labelWidth.4 %tmp.18;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 53 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_stop" ]
+        %bitmapX.5 = local;
+        %tmp.19 = lgetv %dc;
+        %tmp.20 = getv function %tmp.19 :getWidth;
+        %tmp.21 = invoke %tmp.19 %tmp.20();
+        %tmp.23 = lgetv %bitmapWidth.3;
+        %tmp.25 = lgetv %spacing.1;
+        %tmp.26 = add %tmp.23 %tmp.25;
+        %tmp.28 = lgetv %labelWidth.4;
+        %tmp.29 = add %tmp.26 %tmp.28;
+        %tmp.30 = sub %tmp.21 %tmp.29;
+        %tmp.31 = 2;
+        %tmp.32 = div %tmp.30 %tmp.31;
+        lputv %bitmapX.5 %tmp.32;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 54 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_stop" ]
+        %bitmapY.6 = local;
+        %tmp.33 = lgetv %dc;
+        %tmp.34 = getv function %tmp.33 :getHeight;
+        %tmp.35 = invoke %tmp.33 %tmp.34();
+        %tmp.36 = lgetv %appIcon.2;
+        %tmp.37 = getv function %tmp.36 :getHeight;
+        %tmp.38 = invoke %tmp.36 %tmp.37();
+        %tmp.39 = sub %tmp.35 %tmp.38;
+        %tmp.40 = 2;
+        %tmp.41 = div %tmp.39 %tmp.40;
+        lputv %bitmapY.6 %tmp.41;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 55 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_stop" ]
+        %labelX.7 = local;
+        %tmp.43 = lgetv %bitmapX.5;
+        %tmp.45 = lgetv %bitmapWidth.3;
+        %tmp.46 = add %tmp.43 %tmp.45;
+        %tmp.48 = lgetv %spacing.1;
+        %tmp.49 = add %tmp.46 %tmp.48;
+        lputv %labelX.7 %tmp.49;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 56 8 ]
+        [ "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_start" "C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_stop" ]
+        %labelY.8 = local;
+        %tmp.50 = lgetv %dc;
+        %tmp.51 = getv function %tmp.50 :getHeight;
+        %tmp.52 = invoke %tmp.50 %tmp.51();
+        %tmp.53 = 2;
+        %tmp.54 = div %tmp.52 %tmp.53;
+        lputv %labelY.8 %tmp.54;
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 58 8 ]
+        %tmp.55 = lgetv %dc;
+        %tmp.56 = getv function %tmp.55 :setColor;
+        %tmp.57 = getm $.Toybox.Graphics;
+        %tmp.58 = getv %tmp.57 :COLOR_BLACK;
+        %tmp.59 = getm $.Toybox.Graphics;
+        %tmp.60 = getv %tmp.59 :COLOR_BLACK;
+        invoke %tmp.55 %tmp.56(%tmp.58, %tmp.60);
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 59 8 ]
+        %tmp.61 = lgetv %dc;
+        %tmp.62 = getv function %tmp.61 :clear;
+        invoke %tmp.61 %tmp.62();
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 62 8 ]
+        %tmp.63 = lgetv %dc;
+        %tmp.64 = getv function %tmp.63 :setColor;
+        %tmp.65 = getm $.Toybox.Graphics;
+        %tmp.66 = getv %tmp.65 :COLOR_WHITE;
+        %tmp.67 = getm $.Toybox.Graphics;
+        %tmp.68 = getv %tmp.67 :COLOR_TRANSPARENT;
+        invoke %tmp.63 %tmp.64(%tmp.66, %tmp.68);
+[ "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc" 63 8 ]
+        %tmp.69 = lgetv %dc;
+        %tmp.70 = getv function %tmp.69 :drawText;
+        %tmp.72 = lgetv %labelX.7;
+        %tmp.74 = lgetv %labelY.8;
+        %tmp.75 = getm $.Toybox.Graphics;
+        %tmp.76 = getv %tmp.75 :FONT_MEDIUM;
+        %tmp.77 = "Piquet";
+        %tmp.78 = getm $.Toybox.Graphics;
+        %tmp.79 = getv %tmp.78 :TEXT_JUSTIFY_LEFT;
+        %tmp.80 = getm $.Toybox.Graphics;
+        %tmp.81 = getv %tmp.80 :TEXT_JUSTIFY_VCENTER;
+        %tmp.82 = bitor %tmp.79 %tmp.81;
+        invoke %tmp.69 %tmp.70(%tmp.72, %tmp.74, %tmp.76, %tmp.77, %tmp.82);
+C_programs_Garmin_Projects_PiquetCalculator_source_PiquetCalculatorDelegate_mc_47_43_stop:
+    }
+}
+[ @file = "C:\programs\Garmin\Projects\PiquetCalculator\source\PiquetCalculatorDelegate.mc"; @line = 7; ]
+<init> {
+}
