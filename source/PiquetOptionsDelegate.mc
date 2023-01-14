@@ -25,8 +25,9 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
             case "endTime":
                 WatchUi.pushView(new $.TimePicker(id), new $.TimePickerDelegate(item), WatchUi.SLIDE_IMMEDIATE);
                 break;
-            case "endTime":
-                WatchUi.pushView(new $.TimePicker(id), new $.TimePickerDelegate(item), WatchUi.SLIDE_IMMEDIATE);
+            case "numberOfPers":
+                // TODO: Doesn't work, reference Picker/NumberPicker Sample project
+                new $.NumberFactory(1, 99, 1, {});
                 break;
             default:
                 WatchUi.requestUpdate();
@@ -35,22 +36,25 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
     }
 
     //! Handle the back key being pressed
-    public function onBack() as Void {
+    public function onBack() as Void
+    {
         WatchUi.popView(WatchUi.SLIDE_DOWN);
     }
 }
 
 //! This is the menu input delegate shared by all the basic sub-menus in the application
-class Menu2SampleSubMenuDelegate extends WatchUi.Menu2InputDelegate {
-
+class Menu2SampleSubMenuDelegate extends WatchUi.Menu2InputDelegate
+{
     //! Constructor
-    public function initialize() {
+    public function initialize()
+    {
         Menu2InputDelegate.initialize();
     }
 
     //! Handle an item being selected
     //! @param item The selected menu item
-    public function onSelect(item as MenuItem) as Void {
+    public function onSelect(item as MenuItem) as Void 
+    {
         // For IconMenuItems, we will change to the next icon state.
         // This demonstrates a custom toggle operation using icons.
         // Static icons can also be used in this layout.
@@ -58,12 +62,14 @@ class Menu2SampleSubMenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     //! Handle the back key being pressed
-    public function onBack() as Void {
+    public function onBack() as Void 
+    {
         WatchUi.popView(WatchUi.SLIDE_DOWN);
     }
 
     //! Handle the done item being selected
-    public function onDone() as Void {
+    public function onDone() as Void
+    {
         WatchUi.popView(WatchUi.SLIDE_DOWN);
     }
 }
