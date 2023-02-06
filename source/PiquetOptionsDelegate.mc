@@ -2,6 +2,7 @@
 import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.WatchUi;
+import Toybox.Application.Storage;
 
 //! This is the menu input delegate for the main menu of the application
 class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
@@ -25,14 +26,19 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
             case "endTime":
                 WatchUi.pushView(new $.TimePicker(id), new $.TimePickerDelegate(item), WatchUi.SLIDE_IMMEDIATE);
                 break;
-            case "numberOfPers":
-                // TODO: Doesn't work, reference Picker/NumberPicker Sample project
-                new $.NumberFactory(1, 99, 1, {});
+            case "numberOfPers":                
+                WatchUi.pushView(new $.NumberPicker(id), new $.NumberPickerDelegate(item), WatchUi.SLIDE_IMMEDIATE);
                 break;
+            case "staggering":
+                // Generate a new Menu with a drawable Title
+                var staggeringMenu = new WatchUi.Menu2({:title=>new $.DrawableMenuTitle()});
+                // Add menu items for demonstrating toggles, checkbox and icon menu items
+                staggeringMenu.addItem(new WatchUi.MenuItem("Single Staggered", null, "singleStaggered", null));
+                staggeringMenu.addItem(new WatchUi.MenuItem("Double Staggered", null, "doubleStaggered", null));
+                WatchUi.pushView(staggeringMenu, new $.StaggeringMenuDelegate(item), WatchUi.SLIDE_UP);
             default:
                 WatchUi.requestUpdate();
         }
-
     }
 
     //! Handle the back key being pressed
@@ -42,33 +48,30 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
     }
 }
 
-//! This is the menu input delegate shared by all the basic sub-menus in the application
-class Menu2SampleSubMenuDelegate extends WatchUi.Menu2InputDelegate
-{
+//! This is the menu input delegate for the main menu of the application
+class StaggeringMenuDelegate extends WatchUi.Menu2InputDelegate
+{   
+    var ParentMenuItem;
+
     //! Constructor
-    public function initialize()
+    public function initialize(item as MenuItem)
     {
+        ParentMenuItem = item;
         Menu2InputDelegate.initialize();
     }
 
     //! Handle an item being selected
     //! @param item The selected menu item
-    public function onSelect(item as MenuItem) as Void 
+    public function onSelect(item as MenuItem) as Void
     {
-        // For IconMenuItems, we will change to the next icon state.
-        // This demonstrates a custom toggle operation using icons.
-        // Static icons can also be used in this layout.
-        WatchUi.requestUpdate();
+        Storage.setValue(ParentMenuItem.getId(), item.getLabel());
+        ParentMenuItem.setSubLabel(item.getLabel());
+
+        WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
     }
 
     //! Handle the back key being pressed
-    public function onBack() as Void 
-    {
-        WatchUi.popView(WatchUi.SLIDE_DOWN);
-    }
-
-    //! Handle the done item being selected
-    public function onDone() as Void
+    public function onBack() as Void
     {
         WatchUi.popView(WatchUi.SLIDE_DOWN);
     }

@@ -15,7 +15,8 @@ const FACTORY_COUNT_12_HOUR = 4;
 const MINUTE_FORMAT = "%02d";
 
 //! Picker that allows the user to choose a time
-class TimePicker extends WatchUi.Picker {
+class TimePicker extends WatchUi.Picker
+{
 
     var MenuID;
 
@@ -116,19 +117,22 @@ class TimePicker extends WatchUi.Picker {
 }
 
 //! Responds to a time picker selection or cancellation
-class TimePickerDelegate extends WatchUi.PickerDelegate {
+class TimePickerDelegate extends WatchUi.PickerDelegate
+{
 
     var ParentMenuItem;
 
     //! Constructor
-    public function initialize(item as MenuItem) {
+    public function initialize(item as MenuItem)
+    {
         PickerDelegate.initialize();
         ParentMenuItem = item;
     }
 
     //! Handle a cancel event from the picker
     //! @return true if handled, false otherwise
-    public function onCancel() as Boolean {
+    public function onCancel() as Boolean
+    {
         WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
         return true;
     }
