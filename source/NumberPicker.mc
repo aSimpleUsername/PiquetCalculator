@@ -14,14 +14,10 @@ class NumberPicker extends WatchUi.Picker
     public function initialize(id as String)
     {
         var factories = new Array<PickerFactory>[1];
-        factories[0] = new $.NumberFactory(1, 99, 1, {});
-
+        factories[0] = new $.NumberFactory(1, 30, 1, {});
         var title = new WatchUi.Text({:text=>id, :locX=>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM, :color=>Graphics.COLOR_WHITE});
-
         var defaults = new Array<Number>[1];
-
-        // -1 so the index matches the value, check that it can't go negative
-        defaults[0] = Storage.getValue(id) > 0 ? Storage.getValue(id) - 1 : 0;
+        defaults[0] = (factories[0] as NumberFactory).getIndex(Storage.getValue(id).toNumber());        
 
         Picker.initialize({:title=>title, :pattern=>factories, :defaults=>defaults});
     }
@@ -65,7 +61,7 @@ class NumberPickerDelegate extends WatchUi.PickerDelegate
         var value = values[0];
         if (value != null)
         {
-            Storage.setValue(ParentMenuItem.getId(), value);
+            Storage.setValue(ParentMenuItem.getId(), value.format("%d"));
 
             ParentMenuItem.setSubLabel(value.format("%d"));
         }        

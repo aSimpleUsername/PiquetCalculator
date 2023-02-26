@@ -18,6 +18,26 @@ class PiquetCalculatorDelegate extends WatchUi.BehaviorDelegate
     public function initialize()
     {
         BehaviorDelegate.initialize();
+
+        if(Storage.getValue("startTime") == null)
+        {
+            Storage.setValue("startTime", $.Rez.Strings.startTime as String);
+        }
+    
+        if(Storage.getValue("endTime") == null)
+        {
+            Storage.setValue("endTime", $.Rez.Strings.endTime as String);
+        }
+
+        if(Storage.getValue("numberOfPers") == null)
+        {
+            Storage.setValue("numberOfPers", "8");  // TODO: $.Rez.Strings.numberOfPers wont work figure out way to not hardcode this
+        }
+
+        if(Storage.getValue("staggering") == null)
+        {
+            Storage.setValue("staggering", $.Rez.Strings.staggering as String);
+        }
     }
 
     //! Handle the menu event
@@ -27,10 +47,12 @@ class PiquetCalculatorDelegate extends WatchUi.BehaviorDelegate
         // Generate a new Menu with a drawable Title
         var menu = new WatchUi.Menu2({:title=>new $.DrawableMenuTitle()});
 
+        var test = Storage.getValue("numberOfPers");
+
         // Add menu items for demonstrating toggles, checkbox and icon menu items
         menu.addItem(new WatchUi.MenuItem("Start Time", Storage.getValue("startTime"), "startTime", null));
-        menu.addItem(new WatchUi.MenuItem("End Time", $.Rez.Strings.endTime, "endTime", null));
-        menu.addItem(new WatchUi.MenuItem("Number of Pers", $.Rez.Strings.numberOfPers, "numberOfPers", null));
+        menu.addItem(new WatchUi.MenuItem("End Time", Storage.getValue("endTime"), "endTime", null));
+        menu.addItem(new WatchUi.MenuItem("Number of Pers", Storage.getValue("numberOfPers"), "numberOfPers", null));
         menu.addItem(new WatchUi.MenuItem("Staggering", $.Rez.Strings.staggering, "staggering", null));
         menu.addItem(new WatchUi.MenuItem("Calculate", null, "calculate", null));
         WatchUi.pushView(menu, new $.PiquetOptionsDelegate(), WatchUi.SLIDE_UP);

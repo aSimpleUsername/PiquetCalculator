@@ -45,7 +45,7 @@ class PiquetCalculatorView extends WatchUi.View
         // find and modify the labels based on what is in storage
 
         // TODO: Clean this up, left as an example to see how the stored results are used.
-        var startTime = findDrawableById("startTime") as Text;
+        /*var startTime = findDrawableById("startTime") as Text;
         var endTime = findDrawableById("endTime") as Text;
         var numberOfPers = findDrawableById("numberOfPers") as Text;
         var staggering = findDrawableById("staggering") as Text;
@@ -73,7 +73,7 @@ class PiquetCalculatorView extends WatchUi.View
         if (staggering != null && prop instanceof String)
         {
             staggering.setText(prop);
-        }
+        }*/
     }
 }
 
