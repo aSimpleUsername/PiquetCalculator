@@ -36,9 +36,31 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
                 staggeringMenu.addItem(new WatchUi.MenuItem("Single Staggered", null, "singleStaggered", null));
                 staggeringMenu.addItem(new WatchUi.MenuItem("Double Staggered", null, "doubleStaggered", null));
                 WatchUi.pushView(staggeringMenu, new $.StaggeringMenuDelegate(item), WatchUi.SLIDE_UP);
+                break;
+            case "calculate":
+                calculate();
+                break;
             default:
                 WatchUi.requestUpdate();
         }
+    }
+
+    public function calculate()
+    {
+        // Generate a new Menu with a drawable Title
+        var menu = new WatchUi.Menu2({:title=>new $.DrawableMenuTitle()});
+        var numberOfPers = Storage.getValue("numberOfPers").toNumber();
+
+        //TODO: Remove constant $.FACTORY_COUNT_24_HOUR
+        var storedStartTime = TimePicker.splitStoredTime($.FACTORY_COUNT_24_HOUR, Storage.getValue("startTime"));
+        var storedEndTime = TimePicker.splitStoredTime($.FACTORY_COUNT_24_HOUR, Storage.getValue("endTime"));
+
+        for(var i=0; i<numberOfPers; ++i)
+        {
+            menu.addItem(new WatchUi.MenuItem((i+1)+". "+ storedStartTime[0] + ":" + storedStartTime[1] + " - "+ storedEndTime[0] + ":" + storedEndTime[1], null, "line"+(i+1), null));
+        }
+
+        WatchUi.pushView(menu, new $.PiquetOptionsDelegate(), WatchUi.SLIDE_UP);
     }
 
     //! Handle the back key being pressed

@@ -13,7 +13,6 @@ import Toybox.Application.Storage;
 //! when the onMenu() behavior is received.
 class PiquetCalculatorDelegate extends WatchUi.BehaviorDelegate
 {
-
     //! Constructor
     public function initialize()
     {
@@ -21,22 +20,22 @@ class PiquetCalculatorDelegate extends WatchUi.BehaviorDelegate
 
         if(Storage.getValue("startTime") == null)
         {
-            Storage.setValue("startTime", $.Rez.Strings.startTime as String);
+            Storage.setValue("startTime", WatchUi.loadResource($.Rez.Strings.startTime) as String);
         }
     
         if(Storage.getValue("endTime") == null)
         {
-            Storage.setValue("endTime", $.Rez.Strings.endTime as String);
+            Storage.setValue("endTime", WatchUi.loadResource($.Rez.Strings.endTime) as String);
         }
 
         if(Storage.getValue("numberOfPers") == null)
         {
-            Storage.setValue("numberOfPers", "8");  // TODO: $.Rez.Strings.numberOfPers wont work figure out way to not hardcode this
+            Storage.setValue("numberOfPers", WatchUi.loadResource($.Rez.Strings.numberOfPers) as String);
         }
 
         if(Storage.getValue("staggering") == null)
         {
-            Storage.setValue("staggering", $.Rez.Strings.staggering as String);
+            Storage.setValue("staggering", WatchUi.loadResource($.Rez.Strings.staggering) as String);
         }
     }
 
@@ -46,8 +45,6 @@ class PiquetCalculatorDelegate extends WatchUi.BehaviorDelegate
     {
         // Generate a new Menu with a drawable Title
         var menu = new WatchUi.Menu2({:title=>new $.DrawableMenuTitle()});
-
-        var test = Storage.getValue("numberOfPers");
 
         // Add menu items for demonstrating toggles, checkbox and icon menu items
         menu.addItem(new WatchUi.MenuItem("Start Time", Storage.getValue("startTime"), "startTime", null));

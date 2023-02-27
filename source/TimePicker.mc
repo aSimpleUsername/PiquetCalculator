@@ -45,7 +45,7 @@ class TimePicker extends WatchUi.Picker
             :locX=>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_CENTER, :color=>Graphics.COLOR_WHITE});
         factories[2] = new $.NumberFactory(0, 59, 1, {:format=>$.MINUTE_FORMAT});
 
-        var time = splitStoredTime(factories.size());
+        var time = splitStoredTime(factories.size(), Storage.getValue(MenuID));
         var defaults = new Array<Number>[factories.size()];
         if (time != null)
         {
@@ -82,9 +82,9 @@ class TimePicker extends WatchUi.Picker
     //! Get the stored time in an array
     //! @param factoryCount Number of factories used to make the time
     //! @return Array with the stored time
-    private function splitStoredTime(factoryCount as Number) as Array<String>?
+    public function splitStoredTime(factoryCount as Number, storedValue as String) as Array<String>?
     {
-        var storedValue = Storage.getValue(MenuID);
+        //var storedValue = Storage.getValue(MenuID);
         var defaults = null;
         var separatorIndex = 0;
 
