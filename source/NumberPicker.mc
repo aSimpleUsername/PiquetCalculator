@@ -14,7 +14,7 @@ class NumberPicker extends WatchUi.Picker
     public function initialize(id as String)
     {
         var factories = new Array<PickerFactory>[1];
-        factories[0] = new $.NumberFactory(1, 30, 1, {});
+        factories[0] = new $.NumberFactory(1, 50, 1, {});
         var title = new WatchUi.Text({:text=>id, :locX=>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM, :color=>Graphics.COLOR_WHITE});
         var defaults = new Array<Number>[1];
         defaults[0] = (factories[0] as NumberFactory).getIndex(Storage.getValue(id).toNumber());        

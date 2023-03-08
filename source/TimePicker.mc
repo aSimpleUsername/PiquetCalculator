@@ -11,8 +11,7 @@ import Toybox.System;
 import Toybox.WatchUi;
 
 const FACTORY_COUNT_24_HOUR = 3;
-const FACTORY_COUNT_12_HOUR = 4;
-const MINUTE_FORMAT = "%02d";
+const LEADING_ZERO = "%02d";
 
 //! Picker that allows the user to choose a time
 class TimePicker extends WatchUi.Picker
@@ -29,21 +28,12 @@ class TimePicker extends WatchUi.Picker
             :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM, :color=>Graphics.COLOR_WHITE});
         var factories;
 
-        if (System.getDeviceSettings().is24Hour)
-        {
-            factories = new Array<PickerFactory or Text>[$.FACTORY_COUNT_24_HOUR];
-            factories[0] = new $.NumberFactory(0, 23, 1, {});
-        } 
-        else
-        {
-            factories = new Array<PickerFactory or Text>[$.FACTORY_COUNT_12_HOUR];
-            factories[0] = new $.NumberFactory(1, 12, 1, {});
-            factories[3] = new $.WordFactory([$.Rez.Strings.morning, $.Rez.Strings.afternoon] as Array<Symbol>, {});
-        }
+        factories = new Array<PickerFactory or Text>[$.FACTORY_COUNT_24_HOUR];
+        factories[0] = new $.NumberFactory(0, 23, 1, {:format=>$.LEADING_ZERO});
 
         factories[1] = new WatchUi.Text({:text=>$.Rez.Strings.timeSeparator, :font=>Graphics.FONT_MEDIUM,
             :locX=>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_CENTER, :color=>Graphics.COLOR_WHITE});
-        factories[2] = new $.NumberFactory(0, 59, 1, {:format=>$.MINUTE_FORMAT});
+        factories[2] = new $.NumberFactory(0, 59, 1, {:format=>$.LEADING_ZERO});
 
         var time = splitStoredTime(factories.size(), Storage.getValue(MenuID));
         var defaults = new Array<Number>[factories.size()];
@@ -59,11 +49,6 @@ class TimePicker extends WatchUi.Picker
             if (min != null)
             {
                 defaults[2] = (factories[2] as NumberFactory).getIndex(min);
-            }
-
-            if (defaults.size() == $.FACTORY_COUNT_12_HOUR)
-            {
-                defaults[3] = (factories[3] as WordFactory).getIndex(time[2]);
             }
         }
 
@@ -147,16 +132,7 @@ class TimePickerDelegate extends WatchUi.PickerDelegate
 
         if ((hour != null) && (min != null))
         {
-            var time = hour + (WatchUi.loadResource($.Rez.Strings.timeSeparator) as String) + min.format($.MINUTE_FORMAT);
-
-            if (values.size() == $.FACTORY_COUNT_12_HOUR)
-            {
-                var dayPart = values[3];
-                if (dayPart != null)
-                {
-                    time += " " + WatchUi.loadResource(dayPart as Symbol);
-                }
-            }
+            var time = hour.format($.LEADING_ZERO) + (WatchUi.loadResource($.Rez.Strings.timeSeparator) as String) + min.format($.LEADING_ZERO);
             Storage.setValue(ParentMenuItem.getId(), time);
             ParentMenuItem.setSubLabel(time);
         }        

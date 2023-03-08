@@ -31,30 +31,84 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
                 break;
             case "staggering":
                 // Generate a new Menu with a drawable Title
-                var staggeringMenu = new WatchUi.Menu2({:title=>new $.DrawableMenuTitle()});
+                var staggeringMenu = new WatchUi.Menu2({});
                 // Add menu items for demonstrating toggles, checkbox and icon menu items
                 staggeringMenu.addItem(new WatchUi.MenuItem("Single Staggered", null, "singleStaggered", null));
                 staggeringMenu.addItem(new WatchUi.MenuItem("Double Staggered", null, "doubleStaggered", null));
                 WatchUi.pushView(staggeringMenu, new $.StaggeringMenuDelegate(item), WatchUi.SLIDE_UP);
                 break;
             case "calculate":
-                calculate();
+                var calculateList = new WatchUi.Menu2({:title=> "Piquet List"});
+                WatchUi.pushView(calculateList, new $.CalculateDelegate(calculateList), WatchUi.SLIDE_UP);
                 break;
             default:
                 WatchUi.requestUpdate();
         }
     }
 
+    //! Handle the back key being pressed
+    public function onBack() as Void
+    {
+        System.exit();
+        //WatchUi.popView(WatchUi.SLIDE_DOWN);
+    }
+}
+
+//! This is the menu input delegate for the main menu of the application
+class StaggeringMenuDelegate extends WatchUi.Menu2InputDelegate
+{   
+    var ParentMenuItem;
+
+    //! Constructor
+    public function initialize(item as MenuItem)
+    {
+        ParentMenuItem = item;
+        Menu2InputDelegate.initialize();
+    }
+
+    //! Handle an item being selected
+    //! @param item The selected menu item
+    public function onSelect(item as MenuItem) as Void
+    {
+        Storage.setValue(ParentMenuItem.getId(), item.getLabel());
+        ParentMenuItem.setSubLabel(item.getLabel());
+
+        WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+    }
+
+    //! Handle the back key being pressed
+    public function onBack() as Void
+    {
+        WatchUi.popView(WatchUi.SLIDE_DOWN);
+    }
+}
+
+//! This is the menu input delegate for the main menu of the application
+class CalculateDelegate extends WatchUi.Menu2InputDelegate
+{   
+    var menu;
+
+    //! Constructor
+    public function initialize(menuObj as Menu2)
+    {
+        menu = menuObj;
+        calculate();
+
+        Menu2InputDelegate.initialize();
+    }
+
+    //! Handle the back key being pressed
+    public function onBack() as Void
+    {
+        WatchUi.popView(WatchUi.SLIDE_DOWN);
+    }
+
     private function calculate()
     {
         // Generate a new Menu with a drawable Title
-        var menu = new WatchUi.Menu2({:title=>new $.DrawableMenuTitle()});
+        
         var numberOfPers = Storage.getValue("numberOfPers").toNumber();
-
-        //var isDoubleStaggered = Storage.getValue("staggering").equals("Double Staggered") as Boolean;
-
-        var DoubleStaggered = Storage.getValue("staggering");
-        var isDoubleStaggered = DoubleStaggered.equals("Double Staggered") as Boolean;
+        var isDoubleStaggered = Storage.getValue("staggering").equals("Double Staggered") as Boolean;
 
         //TODO: Remove constant $.FACTORY_COUNT_24_HOUR
         var storedStartTime = TimePicker.splitStoredTime($.FACTORY_COUNT_24_HOUR, Storage.getValue("startTime"));
@@ -120,8 +174,11 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
             {
                 tempEndHour = storedEndTime[0].toNumber();
                 tempEndMinute = storedEndTime[1].toNumber();
-
-                serial = 1;
+                
+                if(isDoubleStaggered)
+                {
+                    serial = 1;
+                }
             }
             
             menu.addItem(new WatchUi.MenuItem(serial + ". " + tempStartHour.format("%02d") + ":" + tempStartMinute.format("%02d") + " - " +
@@ -147,43 +204,6 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
                 }
             }            
         }
-
-        WatchUi.pushView(menu, new $.PiquetOptionsDelegate(), WatchUi.SLIDE_UP);
-    }
-
-    //! Handle the back key being pressed
-    public function onBack() as Void
-    {
-        System.exit();
-        //WatchUi.popView(WatchUi.SLIDE_DOWN);
-    }
-}
-
-//! This is the menu input delegate for the main menu of the application
-class StaggeringMenuDelegate extends WatchUi.Menu2InputDelegate
-{   
-    var ParentMenuItem;
-
-    //! Constructor
-    public function initialize(item as MenuItem)
-    {
-        ParentMenuItem = item;
-        Menu2InputDelegate.initialize();
-    }
-
-    //! Handle an item being selected
-    //! @param item The selected menu item
-    public function onSelect(item as MenuItem) as Void
-    {
-        Storage.setValue(ParentMenuItem.getId(), item.getLabel());
-        ParentMenuItem.setSubLabel(item.getLabel());
-
-        WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-    }
-
-    //! Handle the back key being pressed
-    public function onBack() as Void
-    {
-        WatchUi.popView(WatchUi.SLIDE_DOWN);
+        menu.setTitle(piquetTime.format("%d") + "min Each");
     }
 }
