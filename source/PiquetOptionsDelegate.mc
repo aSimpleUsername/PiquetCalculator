@@ -45,19 +45,107 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
         }
     }
 
-    public function calculate()
+    private function calculate()
     {
         // Generate a new Menu with a drawable Title
         var menu = new WatchUi.Menu2({:title=>new $.DrawableMenuTitle()});
         var numberOfPers = Storage.getValue("numberOfPers").toNumber();
 
+        //var isDoubleStaggered = Storage.getValue("staggering").equals("Double Staggered") as Boolean;
+
+        var DoubleStaggered = Storage.getValue("staggering");
+        var isDoubleStaggered = DoubleStaggered.equals("Double Staggered") as Boolean;
+
         //TODO: Remove constant $.FACTORY_COUNT_24_HOUR
         var storedStartTime = TimePicker.splitStoredTime($.FACTORY_COUNT_24_HOUR, Storage.getValue("startTime"));
         var storedEndTime = TimePicker.splitStoredTime($.FACTORY_COUNT_24_HOUR, Storage.getValue("endTime"));
 
+        var startHour = storedStartTime[0].toNumber();
+        var startMinute = storedStartTime[1].toNumber();
+        var endHour = storedEndTime[0].toNumber();
+        var endMinute = storedEndTime[1].toNumber();
+        
+        var hourDifference = endHour - startHour;
+        var minuteDifference = endMinute - startMinute;
+
+        if(hourDifference < 0)
+        {
+            hourDifference += 24;
+        }
+        
+        if(minuteDifference < 0)
+        {
+            hourDifference--;
+            minuteDifference += 60;
+        }
+        
+        var piquetTime = ((hourDifference + (minuteDifference / 60.0f)) / numberOfPers) * 60;
+        var piquetTimeRounded = Math.round(piquetTime);
+        
+        var tempStartHour = startHour;
+        var tempStartMinute = startMinute;
+        var tempEndHour = startHour;
+        var tempEndMinute = startMinute;
+
+        if(isDoubleStaggered)
+        {
+            numberOfPers += 1;
+            piquetTime *= 2;
+        }
+
         for(var i=0; i<numberOfPers; ++i)
         {
-            menu.addItem(new WatchUi.MenuItem((i+1)+". "+ storedStartTime[0] + ":" + storedStartTime[1] + " - "+ storedEndTime[0] + ":" + storedEndTime[1], null, "line"+(i+1), null));
+            var serial = i+1;
+
+            tempEndMinute += piquetTime;
+
+            // First shift is only half shift
+            if(i == 0 && isDoubleStaggered)
+            {
+                tempEndMinute -= piquetTime/2;
+            }            
+            
+            while(tempEndMinute >= 60)
+            {
+                tempEndMinute -= 60;
+                tempEndHour++;
+            }
+            
+            if(tempEndHour >= 24)
+            {
+                tempEndHour -= 24;
+            }
+
+            if(i == numberOfPers-1)
+            {
+                tempEndHour = storedEndTime[0].toNumber();
+                tempEndMinute = storedEndTime[1].toNumber();
+
+                serial = 1;
+            }
+            
+            menu.addItem(new WatchUi.MenuItem(serial + ". " + tempStartHour.format("%02d") + ":" + tempStartMinute.format("%02d") + " - " +
+                tempEndHour.format("%02d") + ":" + tempEndMinute.format("%02d"), null, "serial" + serial, null));
+
+            tempStartHour = tempEndHour;
+            tempStartMinute = tempEndMinute;
+
+            if(isDoubleStaggered)
+            {
+                tempStartMinute -= piquetTime / 2;
+                tempEndMinute -= piquetTime / 2;
+
+                while(tempStartMinute < 0)
+                {
+                    tempStartMinute += 60;
+                    tempStartHour--;
+                }
+                
+                if(tempStartHour < 0)
+                {
+                    tempStartHour += 24;
+                }
+            }            
         }
 
         WatchUi.pushView(menu, new $.PiquetOptionsDelegate(), WatchUi.SLIDE_UP);
@@ -66,7 +154,8 @@ class PiquetOptionsDelegate extends WatchUi.Menu2InputDelegate
     //! Handle the back key being pressed
     public function onBack() as Void
     {
-        WatchUi.popView(WatchUi.SLIDE_DOWN);
+        System.exit();
+        //WatchUi.popView(WatchUi.SLIDE_DOWN);
     }
 }
 
