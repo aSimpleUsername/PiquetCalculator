@@ -50,7 +50,7 @@ class PiquetCalculatorDelegate extends WatchUi.BehaviorDelegate
         menu.addItem(new WatchUi.MenuItem("Start Time", Storage.getValue("startTime"), "startTime", null));
         menu.addItem(new WatchUi.MenuItem("End Time", Storage.getValue("endTime"), "endTime", null));
         menu.addItem(new WatchUi.MenuItem("Number of Pers", Storage.getValue("numberOfPers"), "numberOfPers", null));
-        menu.addItem(new WatchUi.MenuItem("Staggering", $.Rez.Strings.staggering, "staggering", null));
+        menu.addItem(new WatchUi.MenuItem("Staggering", Storage.getValue("staggering"), "staggering", null));
         menu.addItem(new WatchUi.MenuItem("Calculate", null, "calculate", null));
         WatchUi.pushView(menu, new $.PiquetOptionsDelegate(), WatchUi.SLIDE_UP);
     }
