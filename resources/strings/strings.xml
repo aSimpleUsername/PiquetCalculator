@@ -8,6 +8,7 @@
 
     <!-- Time Picker -->
     <string id="timePickerTitle">Select Time</string>
+    <string id="numberPickerTitle">Select Number</string>
     <string id="timeSeparator">:</string>
     <string id="morning">AM</string>
     <string id="afternoon">PM</string>
