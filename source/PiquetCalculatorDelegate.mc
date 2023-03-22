@@ -76,7 +76,7 @@ class DrawableMenuTitle extends WatchUi.Drawable
         var labelWidth = dc.getTextWidthInPixels("Piquet", Graphics.FONT_MEDIUM);
 
         var bitmapX = (dc.getWidth() - (bitmapWidth + spacing + labelWidth)) / 2;
-        var bitmapY = (dc.getHeight() - appIcon.getHeight()) / 2;
+        //var bitmapY = (dc.getHeight() - appIcon.getHeight()) / 2;
         var labelX = bitmapX + bitmapWidth + spacing;
         var labelY = dc.getHeight() / 2;
 

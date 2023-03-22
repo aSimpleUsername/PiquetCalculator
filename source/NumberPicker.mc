@@ -55,7 +55,7 @@ class NumberPickerDelegate extends WatchUi.PickerDelegate
     //! Handle a confirm event from the picker
     //! @param values The values chosen in the picker
     //! @return true if handled, false otherwise
-    public function onAccept(values as Array<Number?>) as Boolean
+    public function onAccept(values as Array) as Boolean
     {
         // We only have one value to consider
         var value = values[0];

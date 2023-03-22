@@ -105,15 +105,13 @@ class CalculateDelegate extends WatchUi.Menu2InputDelegate
 
     private function calculate()
     {
-        // Generate a new Menu with a drawable Title
-        
+        // Get stored values
         var numberOfPers = Storage.getValue("numberOfPers").toNumber();
         var isDoubleStaggered = Storage.getValue("staggering").equals("Double Staggered") as Boolean;
-
-        //TODO: Remove constant $.FACTORY_COUNT_24_HOUR
         var storedStartTime = TimePicker.splitStoredTime($.FACTORY_COUNT_24_HOUR, Storage.getValue("startTime"));
         var storedEndTime = TimePicker.splitStoredTime($.FACTORY_COUNT_24_HOUR, Storage.getValue("endTime"));
 
+        // Split time
         var startHour = storedStartTime[0].toNumber();
         var startMinute = storedStartTime[1].toNumber();
         var endHour = storedEndTime[0].toNumber();
@@ -134,7 +132,6 @@ class CalculateDelegate extends WatchUi.Menu2InputDelegate
         }
         
         var piquetTime = ((hourDifference + (minuteDifference / 60.0f)) / numberOfPers) * 60;
-        var piquetTimeRounded = Math.round(piquetTime);
         
         var tempStartHour = startHour;
         var tempStartMinute = startMinute;

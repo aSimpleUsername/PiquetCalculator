@@ -125,7 +125,7 @@ class TimePickerDelegate extends WatchUi.PickerDelegate
     //! Handle a confirm event from the picker
     //! @param values The values chosen in the picker
     //! @return true if handled, false otherwise
-    public function onAccept(values as Array<Number?>) as Boolean
+    public function onAccept(values as Array) as Boolean
     {
         var hour = values[0];
         var min = values[2];
